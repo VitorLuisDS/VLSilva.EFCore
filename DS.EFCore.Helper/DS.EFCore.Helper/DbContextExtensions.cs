@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DS.EFCore.Helper
 {
-    public static class DbContextExtentions
+    public static class DbContextExtensions
     {
         public static void RemoveUntrackedEntity<TEntity>(this DbContext dbContext, TEntity entity) where TEntity : class
         {
