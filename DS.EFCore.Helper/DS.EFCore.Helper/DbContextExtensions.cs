@@ -11,7 +11,7 @@ namespace DS.EFCore.Helper
     {
         /// <summary>
         /// <para>
-        /// Begins tracking the given (multiple) entities with State = EntityState.Deleted.
+        /// Begins tracking the given (multiple) entities setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// Entities with State = EntityState.Added will be detached from the DbContext.
@@ -22,6 +22,9 @@ namespace DS.EFCore.Helper
         /// <param name="entities">Entities to remove.</param>
         public static void RemoveUntrackedEntities<TEntity>(this DbContext dbContext, IEnumerable<TEntity> entities) where TEntity : class
         {
+            if(entities is null)
+                throw new ArgumentNullException(nameof(entities));
+
             foreach (TEntity entity in entities)
             {
                 if (dbContext.Entry(entity).State == EntityState.Detached)
@@ -35,7 +38,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking the given (multiple) entities with State = EntityState.Modified.
+        /// Begins tracking the given (multiple) entities setting State = EntityState.Modified.
         /// </para>
         /// <para>
         /// Entities with State = EntityState.Detached will be attached to the DbContext.
@@ -46,6 +49,9 @@ namespace DS.EFCore.Helper
         /// <param name="entities">Entities to update.</param>
         public static void UpdateUntrackedEntities<TEntity>(this DbContext dbContext, IEnumerable<TEntity> entities) where TEntity : class
         {
+            if (entities is null)
+                throw new ArgumentNullException(nameof(entities));
+
             foreach (TEntity entity in entities)
             {
                 if (dbContext.Entry(entity).State == EntityState.Detached)
@@ -59,7 +65,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking the given entity with State = EntityState.Deleted.
+        /// Begins tracking the given entity setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// If the entity has State = EntityState.Added, it will be detached from the DbContext.
@@ -70,6 +76,9 @@ namespace DS.EFCore.Helper
         /// <param name="entity">Entity to remove.</param>
         public static void RemoveUntrackedEntity<TEntity>(this DbContext dbContext, TEntity entity) where TEntity : class
         {
+            if (entity is null)
+                throw new ArgumentNullException(nameof(entity));
+
             if (dbContext.Entry(entity).State == EntityState.Detached)
             {
                 dbContext.Attach(entity);
@@ -80,7 +89,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking the given entity with State = EntityState.Modified.
+        /// Begins tracking the given entity setting State = EntityState.Modified.
         /// <para>
         /// </para>
         /// If the entity has State = EntityState.Detached, it will be attached to the DbContext.
@@ -91,6 +100,9 @@ namespace DS.EFCore.Helper
         /// <param name="entity">Entity to update..</param>
         public static void UpdateUntrackedEntity<TEntity>(this DbContext dbContext, TEntity entity) where TEntity : class
         {
+            if (entity is null)
+                throw new ArgumentNullException(nameof(entity));
+
             if (dbContext.Entry(entity).State == EntityState.Detached)
             {
                 dbContext.Attach(entity);
@@ -101,10 +113,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking the entity that matches the given expression with State = EntityState.Deleted.
-        /// </para>
-        /// <para>
-        /// If the entity has State = EntityState.Added, it will be detached from the DbContext.
+        /// Begins tracking the entity (that exists in the database and) that matches the given expression setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// If no entity is found, an exception will be thrown.
@@ -115,6 +124,9 @@ namespace DS.EFCore.Helper
         /// <param name="filter">Expression that filters the entity to remove.</param>
         public static void RemoveBy<TEntity>(this DbContext dbContext, Expression<Func<TEntity, bool>> filter) where TEntity : class
         {
+            if (filter is null)
+                throw new ArgumentNullException(nameof(filter));
+
             TEntity entity = dbContext
                 .Set<TEntity>()
                 .AsTracking()
@@ -125,10 +137,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking asynchronously the entity that matches the given expression with State = EntityState.Deleted.
-        /// </para>
-        /// <para>
-        /// If the entity has State = EntityState.Added, it will be detached from the DbContext.
+        /// Begins tracking asynchronously the entity (that exists in the database and) that matches the given expression setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// If no entity is found, an exception will be thrown.
@@ -140,6 +149,9 @@ namespace DS.EFCore.Helper
         /// <returns></returns>
         public static async Task RemoveAsyncBy<TEntity>(this DbContext dbContext, Expression<Func<TEntity, bool>> filter) where TEntity : class
         {
+            if (filter is null)
+                throw new ArgumentNullException(nameof(filter));
+
             TEntity entity = await dbContext
                 .Set<TEntity>()
                 .AsTracking()
@@ -150,7 +162,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking the (multiple) entities that matches the given expression with State = EntityState.Deleted.
+        /// Begins tracking the (multiple) entities that matches the given expression setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// Entities with State = EntityState.Added will be detached from the DbContext.
@@ -176,7 +188,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking asynchronously the (multiple) entities that matches the given expression with State = EntityState.Deleted.
+        /// Begins tracking asynchronously the (multiple) entities that matches the given expression setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// Entities with State = EntityState.Added will be detached from the DbContext.
