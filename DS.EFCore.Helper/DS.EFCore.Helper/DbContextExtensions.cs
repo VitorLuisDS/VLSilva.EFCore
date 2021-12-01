@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -8,6 +9,32 @@ namespace DS.EFCore.Helper
 {
     public static class DbContextExtensions
     {
+        public static void RemoveUntrackedEntities<TEntity>(this DbContext dbContext, IEnumerable<TEntity> entities) where TEntity : class
+        {
+            foreach (TEntity entity in entities)
+            {
+                if (dbContext.Entry(entity).State == EntityState.Detached)
+                {
+                    dbContext.Attach(entity);
+                }
+            }
+
+            dbContext.RemoveRange(entities);
+        }
+
+        public static void UpdateUntrackedEntities<TEntity>(this DbContext dbContext, IEnumerable<TEntity> entities) where TEntity : class
+        {
+            foreach (TEntity entity in entities)
+            {
+                if (dbContext.Entry(entity).State == EntityState.Detached)
+                {
+                    dbContext.Attach(entity);
+                }
+
+                dbContext.Entry(entity).State = EntityState.Modified;
+            }
+        }
+
         public static void RemoveUntrackedEntity<TEntity>(this DbContext dbContext, TEntity entity) where TEntity : class
         {
             if (dbContext.Entry(entity).State == EntityState.Detached)
