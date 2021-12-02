@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace VLSilva.EFCore.Extentions
+namespace VLSilva.EFCore.Extensions
 {
     public static class DbContextExtensions
     {
