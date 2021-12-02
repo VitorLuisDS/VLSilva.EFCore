@@ -6,14 +6,25 @@
     <Description>VLSilva.EFCore.Extensions is a aggregate of useful extensions when working with EFCore.</Description>
     <Copyright>Copyright (c) 2021 Vitor Silva</Copyright>
     <PackageProjectUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</PackageProjectUrl>
-    <PackageIcon>DS.EFCore.png</PackageIcon>
+    <PackageIcon>VLSILVA.EFCore.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>efcore;extensions;vlsilva;</PackageTags>
     <PackageReleaseNotes>First version of package.</PackageReleaseNotes>
-    <PackageLicenseFile>C:\PERSONAL_REPOS\VLSilva.EFCore\LICENSE</PackageLicenseFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\VLSILVA.EFCore.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />
