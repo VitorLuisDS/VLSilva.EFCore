@@ -12,7 +12,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>efcore;extensions;vlsilva;</PackageTags>
     <PackageReleaseNotes>First version of package.</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile>C:\PERSONAL_REPOS\VLSilva.EFCore\LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
