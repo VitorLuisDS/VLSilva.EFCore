@@ -1,16 +1,13 @@
-[![image](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vitorluisdss/)
-# VLSilva.EFCore
+# VLSilva.EFCore.Extensions
 
-<img src="https://i.imgur.com/plcvDhF.png">
-
-VLSilva.EFCore is a aggregate of projects containing useful resources when working with EFCore.
+VLSilva.EFCore.Extensions is a aggregate of useful extensions when working with EFCore.
 
 ## Why did I create it?
-The projects were created to fasten EFCore implementation since I always created the same resources in every project I worked in.
+The VLSilva.EFCore projects were created to fasten EFCore implementation since I always created the same resources in every project I worked in.
 
 ---
 
-## Packages
+## VLSilva.EFCore Packages
 | Name |  Version | NuGet |
 | ------- | ----- | ----- |
 | `VLSilva.EFCore.Extensions` | 1.0.0 | [Click here](https://www.nuget.org/packages/VLSilva.EFCore.Extensions) |

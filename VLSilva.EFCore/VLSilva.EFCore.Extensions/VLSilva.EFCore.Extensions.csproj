@@ -6,21 +6,21 @@
     <Description>VLSilva.EFCore.Extensions is a aggregate of useful extensions when working with EFCore.</Description>
     <Copyright>Copyright (c) 2021 Vitor Silva</Copyright>
     <PackageProjectUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</PackageProjectUrl>
-    <PackageIcon>VLSILVA.EFCore.png</PackageIcon>
+    <PackageIcon>VLSilva.EFCore Icon2.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>efcore;extensions;vlsilva;</PackageTags>
-    <PackageReleaseNotes>First version of package.</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md">
+    <None Include="..\..\..\..\Users\vitor.silva\Desktop\VLSilva.EFCore Icon2.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\..\VLSILVA.EFCore.png">
+    <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -28,6 +28,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
 
 </Project>
