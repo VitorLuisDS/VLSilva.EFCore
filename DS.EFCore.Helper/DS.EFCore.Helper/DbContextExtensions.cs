@@ -162,7 +162,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking the (multiple) entities that matches the given expression setting State = EntityState.Deleted.
+        /// Begins tracking the (multiple) entities (that exists in the database and) that matches the given expression setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// Entities with State = EntityState.Added will be detached from the DbContext.
@@ -188,7 +188,7 @@ namespace DS.EFCore.Helper
 
         /// <summary>
         /// <para>
-        /// Begins tracking asynchronously the (multiple) entities that matches the given expression setting State = EntityState.Deleted.
+        /// Begins tracking asynchronously the (multiple) entities (that exists in the database and) that matches the given expression setting State = EntityState.Deleted.
         /// </para>
         /// <para>
         /// Entities with State = EntityState.Added will be detached from the DbContext.
@@ -209,7 +209,8 @@ namespace DS.EFCore.Helper
                 .Where(filter)
                 .ToArrayAsync();
 
-            dbContext.RemoveRange(entities);
+            if (entities.Any())
+                dbContext.RemoveRange(entities);
         }
     }
 }

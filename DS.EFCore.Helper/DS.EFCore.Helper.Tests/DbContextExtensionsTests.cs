@@ -353,15 +353,87 @@ namespace DS.EFCore.Helper.Tests
         }
 
         [TestMethod()]
-        public void RemoveAllTest()
+        public void RemoveAll_UntrackedEntities_EntitiesDeleted()
         {
-            Assert.Fail();
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+            Guid[] usersId = fakeDbContext
+                .Users
+                .AsNoTracking()
+                .Where(user => user.Active)
+                .Select(user => user.Id)
+                .Take(3)
+                .ToArray();
+
+            //Act
+            fakeDbContext.RemoveAll<User>(userDb => userDb.Active);
+
+            //Assert
+            User[] users = fakeDbContext
+                .Users
+                .Where(userDb => usersId.Contains(userDb.Id))
+                .ToArray();
+
+            EntityState entityState1 = fakeDbContext.Entry(users[0]).State;
+            EntityState entityState2 = fakeDbContext.Entry(users[1]).State;
+            EntityState entityState3 = fakeDbContext.Entry(users[2]).State;
+
+            Assert.IsTrue(entityState1 == EntityState.Deleted && entityState2 == EntityState.Deleted && entityState3 == EntityState.Deleted);
         }
 
         [TestMethod()]
-        public void RemoveAllAsyncTest()
+        public void RemoveAll_NullFilter_ExceptionIsThrown()
         {
-            Assert.Fail();
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+
+            //Act
+            Action removeAll = () => fakeDbContext.RemoveAll<User>(null);
+
+            //Assert
+            Assert.ThrowsException<ArgumentNullException>(removeAll);
+        }
+
+        [TestMethod()]
+        public async Task RemoveAllAsync_UntrackedEntities_EntitiesDeleted()
+        {
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+            Guid[] usersId = fakeDbContext
+                .Users
+                .AsNoTracking()
+                .Where(user => user.Active)
+                .Select(user => user.Id)
+                .Take(3)
+                .ToArray();
+
+            //Act
+            await fakeDbContext.RemoveAllAsync<User>(userDb => userDb.Active);
+
+            //Assert
+            User[] users = fakeDbContext
+                .Users
+                .Where(userDb => usersId.Contains(userDb.Id))
+                .ToArray();
+
+            EntityState entityState1 = fakeDbContext.Entry(users[0]).State;
+            EntityState entityState2 = fakeDbContext.Entry(users[1]).State;
+            EntityState entityState3 = fakeDbContext.Entry(users[2]).State;
+
+            Assert.IsTrue(entityState1 == EntityState.Deleted && entityState2 == EntityState.Deleted && entityState3 == EntityState.Deleted);
+        }
+
+        [TestMethod()]
+        public async Task RemoveAllAsync_NullFilter_ExceptionIsThrown()
+        {
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+
+            //Act
+            Func<Task> removeAllAsync = async () => await fakeDbContext.RemoveAllAsync<User>(null);
+
+            //Assert
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(removeAllAsync);
         }
     }
 }
