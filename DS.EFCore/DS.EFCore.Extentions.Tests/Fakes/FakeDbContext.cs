@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DS.EFCore.Helper.Tests.Fakes
+namespace DS.EFCore.Extentions.Tests.Fakes
 {
     internal partial class FakeDbContext : DbContext
     {
@@ -14,7 +11,7 @@ namespace DS.EFCore.Helper.Tests.Fakes
         private static DbContextOptions<FakeDbContext> GetInMemoryOptions()
         {
             DbContextOptions<FakeDbContext> options = new DbContextOptionsBuilder<FakeDbContext>()
-                   .UseInMemoryDatabase("DS.EFCore.Helper.Fakes")
+                   .UseInMemoryDatabase("DS.EFCore.Extentions.Fakes")
                    .Options;
 
             return options;
@@ -22,7 +19,7 @@ namespace DS.EFCore.Helper.Tests.Fakes
 
         public static FakeDbContext GetFakeDbContext()
         {
-            FakeDbContext fakeDbContext  = new FakeDbContext(GetInMemoryOptions());
+            FakeDbContext fakeDbContext = new FakeDbContext(GetInMemoryOptions());
             fakeDbContext.Database.EnsureCreated();
 
             return fakeDbContext;

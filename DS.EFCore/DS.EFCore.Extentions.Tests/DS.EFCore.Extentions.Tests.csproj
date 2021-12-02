@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DS.EFCore\DS.EFCore.csproj" />
+    <ProjectReference Include="..\DS.EFCore.Extentions\DS.EFCore.Extentions.csproj" />
   </ItemGroup>
 
 </Project>

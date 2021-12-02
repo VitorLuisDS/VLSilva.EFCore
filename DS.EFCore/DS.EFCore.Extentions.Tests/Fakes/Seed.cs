@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DS.EFCore.Helper.Tests.Fakes
+namespace DS.EFCore.Extentions.Tests.Fakes
 {
     internal static class Seed
     {

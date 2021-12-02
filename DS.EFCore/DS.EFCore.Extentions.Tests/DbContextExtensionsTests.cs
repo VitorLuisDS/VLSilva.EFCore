@@ -1,14 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DS.EFCore.Helper;
+﻿using DS.EFCore.Extentions.Tests.Fakes;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using DS.EFCore.Helper.Tests.Fakes;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace DS.EFCore.Helper.Tests
+namespace DS.EFCore.Extentions.Tests
 {
     [TestClass()]
     public class DbContextExtensionsTests
@@ -494,8 +492,8 @@ namespace DS.EFCore.Helper.Tests
             Guid userId1 = Guid.NewGuid();
             Guid userId2 = Guid.NewGuid();
 
-            User[] users = new User[] 
-            { 
+            User[] users = new User[]
+            {
                 new User
                 {
                     Id = userId1,
