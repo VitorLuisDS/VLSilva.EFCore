@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>VitorLuisDS</Authors>
+    <Description>VLSilva.EFCore.Extensions is a aggregate of useful extensions when working with EFCore.</Description>
+    <Copyright>Copyright (c) 2021 Vitor Silva</Copyright>
+    <PackageProjectUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</PackageProjectUrl>
+    <PackageIcon>DS.EFCore.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>efcore;extensions;vlsilva;</PackageTags>
+    <PackageReleaseNotes>First version of package.</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>

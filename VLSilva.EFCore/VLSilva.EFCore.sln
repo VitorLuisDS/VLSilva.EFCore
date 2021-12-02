@@ -9,6 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VLSilva.EFCore.Extensions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VLSilva.EFCore.Extensions.Tests", "VLSilva.EFCore.Extensions.Tests\VLSilva.EFCore.Extensions.Tests.csproj", "{679C7C34-CA0E-44C0-88C2-C849B1B63858}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0A6103B-1B31-4685-951A-1F6954E0FB12}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\vitor.silva\Desktop\DS.EFCore.png = ..\..\..\Users\vitor.silva\Desktop\DS.EFCore.png
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
