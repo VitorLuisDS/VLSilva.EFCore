@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DS.EFCore.Extentions\DS.EFCore.Extentions.csproj" />
+    <ProjectReference Include="..\VLSilva.EFCore.Extentions\VLSilva.EFCore.Extentions.csproj" />
   </ItemGroup>
 
 </Project>

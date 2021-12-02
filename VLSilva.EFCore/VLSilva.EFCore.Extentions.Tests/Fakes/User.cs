@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DS.EFCore.Extentions.Tests.Fakes
+namespace VLSilva.EFCore.Extentions.Tests.Fakes
 {
     internal class User
     {
