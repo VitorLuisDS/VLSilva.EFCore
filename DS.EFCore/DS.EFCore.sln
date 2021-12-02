@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.EFCore.Extentions", "DS.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DS.EFCore.Extentions.Tests", "DS.EFCore.Extentions.Tests\DS.EFCore.Extentions.Tests.csproj", "{92EFCC52-A3C8-41D0-9489-855B73BF768D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{65C3D990-E216-4100-9DE1-86DD579AFEB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92EFCC52-A3C8-41D0-9489-855B73BF768D} = {65C3D990-E216-4100-9DE1-86DD579AFEB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25EC906C-8617-4FB7-A099-1A1BC36FF3D5}
