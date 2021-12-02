@@ -1,6 +1,6 @@
 # VLSilva.EFCore
 
-<img src="https://i.imgur.com/plcvDhF.png" alt="exemplo imagem">
+<img src="https://i.imgur.com/plcvDhF.png">
 
 VLSilva.EFCore is a aggregate of projects containing useful resources when working with EFCore.
 
@@ -8,10 +8,20 @@ VLSilva.EFCore is a aggregate of projects containing useful resources when worki
 The projects were created to fasten EFCore implementation since I always created the same resources in every project I worked in.
 
 ## Packages
-- VLSilva.EFCore.Extensions.
+| Name |  Version | NuGet |
+| ------- | ----- | ----- |
+| `VLSilva.EFCore.Extensions` | 1.0.0 | [Click here](https://www.nuget.org/packages/VLSilva.EFCore.Extensions) |
 
 ## Dependencies
+
+### VLSilva.EFCore.Extensions
 - .NET Standard 2.0.
+- Microsoft.EntityFrameworkCore 3.1.21.
+ 
+## Contribute
+Do you know some functionality you think VLSilva.EF Core should have? Your suggestions are very welcome!
+
+Feel free to fork and experiment new solutions to your own projects as well.
 
 ## License
 
