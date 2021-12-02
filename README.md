@@ -23,7 +23,7 @@ The projects were created to fasten EFCore implementation since I always created
     Install-Package VLSilva.EFCore.Extensions
 
 ### .NET CLI
-    dotnet add package VLSilva.EFCore.Extensions --version 1.0.0
+    dotnet add package VLSilva.EFCore.Extensions
     
 ---
 
