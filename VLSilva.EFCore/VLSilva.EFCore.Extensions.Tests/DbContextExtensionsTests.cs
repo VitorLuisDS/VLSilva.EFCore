@@ -1,4 +1,4 @@
-﻿using VLSilva.EFCore.Extentions.Tests.Fakes;
+﻿using VLSilva.EFCore.Extensions.Tests.Fakes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace VLSilva.EFCore.Extentions.Tests
+namespace VLSilva.EFCore.Extensions.Tests
 {
     [TestClass()]
     public class DbContextExtensionsTests

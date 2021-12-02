@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace VLSilva.EFCore.Extentions.Tests.Fakes
+namespace VLSilva.EFCore.Extensions.Tests.Fakes
 {
     internal partial class FakeDbContext : DbContext
     {
@@ -11,7 +11,7 @@ namespace VLSilva.EFCore.Extentions.Tests.Fakes
         private static DbContextOptions<FakeDbContext> GetInMemoryOptions()
         {
             DbContextOptions<FakeDbContext> options = new DbContextOptionsBuilder<FakeDbContext>()
-                   .UseInMemoryDatabase("VLSilva.EFCore.Extentions.Fakes")
+                   .UseInMemoryDatabase("VLSilva.EFCore.Extensions.Fakes")
                    .Options;
 
             return options;

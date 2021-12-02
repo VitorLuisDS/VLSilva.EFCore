@@ -8,7 +8,7 @@ VLSilva.EFCore is a aggregate of projects containing useful resources when worki
 The projects were created to fasten EFCore implementation since I always created the same resources in every project I worked in.
 
 ## Packages
-- VLSilva.EFCore.Extentions.
+- VLSilva.EFCore.Extensions.
 
 ## Dependencies
 - .NET Standard 2.0.

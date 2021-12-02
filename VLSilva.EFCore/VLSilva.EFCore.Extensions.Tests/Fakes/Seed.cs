@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace VLSilva.EFCore.Extentions.Tests.Fakes
+namespace VLSilva.EFCore.Extensions.Tests.Fakes
 {
     internal static class Seed
     {
