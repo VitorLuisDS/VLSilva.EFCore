@@ -103,7 +103,7 @@ namespace DS.EFCore.Helper.Tests
         }
 
         [TestMethod()]
-        public void UpdateUntrackedEntities_DetatchedEntities_EntitiesModified()
+        public void UpdateUntrackedEntities_DetachedEntities_EntitiesModified()
         {
             //Arrange
             FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
@@ -215,7 +215,7 @@ namespace DS.EFCore.Helper.Tests
         }
 
         [TestMethod()]
-        public void UpdateUntrackedEntity_DetatchedEntity_EntityModified()
+        public void UpdateUntrackedEntity_DetachedEntity_EntityModified()
         {
             //Arrange
             FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
@@ -434,6 +434,107 @@ namespace DS.EFCore.Helper.Tests
 
             //Assert
             await Assert.ThrowsExceptionAsync<ArgumentNullException>(removeAllAsync);
+        }
+
+        [TestMethod()]
+        public void DetachUnsavedEntityBy_AddedEntity_EntityDetached()
+        {
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+            User addedUser = new User
+            {
+                Id = Guid.NewGuid(),
+                Active = true,
+                CreationDate = DateTime.UtcNow,
+                Username = "user01"
+            };
+            fakeDbContext.Add(addedUser);
+
+            //Act
+            fakeDbContext.DetachUnsavedEntityBy<User>(userDb => userDb.Id == addedUser.Id);
+
+            //Assert
+            EntityState entityState1 = fakeDbContext.Entry(addedUser).State;
+
+            Assert.IsTrue(entityState1 == EntityState.Detached);
+        }
+
+        [TestMethod()]
+        public void DetachUnsavedEntityBy_NullFilter_ExceptionIsThrown()
+        {
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+
+            //Act
+            Action detachUnsavedEntityBy = () => fakeDbContext.DetachUnsavedEntityBy<User>(null);
+
+            //Assert
+            Assert.ThrowsException<ArgumentNullException>(detachUnsavedEntityBy);
+        }
+
+        [TestMethod()]
+        public void DetachUnsavedEntityBy_NoEntityFoundInCondition_ExceptionIsThrown()
+        {
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+            Guid userId = Guid.NewGuid();
+
+            //Act
+            Action detachUnsavedEntityBy = () => fakeDbContext.DetachUnsavedEntityBy<User>(userDb => userDb.Id == userId);
+
+            //Assert
+            Assert.ThrowsException<InvalidOperationException>(detachUnsavedEntityBy);
+        }
+
+        [TestMethod()]
+        public void DetachUnsavedEntitiesBy_AddedEntity_EntitiesDetached()
+        {
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+            Guid userId1 = Guid.NewGuid();
+            Guid userId2 = Guid.NewGuid();
+
+            User[] users = new User[] 
+            { 
+                new User
+                {
+                    Id = userId1,
+                    Active = true,
+                    CreationDate = DateTime.UtcNow,
+                    Username = "user01"
+                },
+                new User
+                {
+                    Id = userId2,
+                    Active = true,
+                    CreationDate = DateTime.UtcNow,
+                    Username = "user02"
+                }
+            };
+            fakeDbContext.AddRange(users);
+
+            //Act
+            fakeDbContext.DetachUnsavedEntitiesBy<User>(userDb => userDb.Active);
+
+            //Assert
+
+            EntityState entityState1 = fakeDbContext.Entry(users[0]).State;
+            EntityState entityState2 = fakeDbContext.Entry(users[1]).State;
+
+            Assert.IsTrue(entityState1 == EntityState.Detached && entityState2 == EntityState.Detached);
+        }
+
+        [TestMethod()]
+        public void DetachUnsavedEntitiesBy_NullFilter_ExceptionIsThrown()
+        {
+            //Arrange
+            FakeDbContext fakeDbContext = FakeDbContext.GetFakeDbContext();
+
+            //Act
+            Action removeAll = () => fakeDbContext.DetachUnsavedEntitiesBy<User>(null);
+
+            //Assert
+            Assert.ThrowsException<ArgumentNullException>(removeAll);
         }
     }
 }

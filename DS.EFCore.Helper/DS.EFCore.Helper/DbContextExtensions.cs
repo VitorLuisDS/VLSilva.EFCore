@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,10 @@ namespace DS.EFCore.Helper
         /// <typeparam name="TEntity">Entity class.</typeparam>
         /// <param name="dbContext">DbContext that will track changes.</param>
         /// <param name="entities">Entities to remove.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static void RemoveUntrackedEntities<TEntity>(this DbContext dbContext, IEnumerable<TEntity> entities) where TEntity : class
         {
-            if(entities is null)
+            if (entities is null)
                 throw new ArgumentNullException(nameof(entities));
 
             foreach (TEntity entity in entities)
@@ -47,6 +49,7 @@ namespace DS.EFCore.Helper
         /// <typeparam name="TEntity">Entity class.</typeparam>
         /// <param name="dbContext">DbContext that will track changes.</param>
         /// <param name="entities">Entities to update.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static void UpdateUntrackedEntities<TEntity>(this DbContext dbContext, IEnumerable<TEntity> entities) where TEntity : class
         {
             if (entities is null)
@@ -74,6 +77,7 @@ namespace DS.EFCore.Helper
         /// <typeparam name="TEntity">Entity class.</typeparam>
         /// <param name="dbContext">DbContext that will track changes.</param>
         /// <param name="entity">Entity to remove.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static void RemoveUntrackedEntity<TEntity>(this DbContext dbContext, TEntity entity) where TEntity : class
         {
             if (entity is null)
@@ -98,6 +102,7 @@ namespace DS.EFCore.Helper
         /// <typeparam name="TEntity">Entity class.</typeparam>
         /// <param name="dbContext">DbContext that will track changes..</param>
         /// <param name="entity">Entity to update..</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static void UpdateUntrackedEntity<TEntity>(this DbContext dbContext, TEntity entity) where TEntity : class
         {
             if (entity is null)
@@ -122,6 +127,7 @@ namespace DS.EFCore.Helper
         /// <typeparam name="TEntity">Entity class.</typeparam>
         /// <param name="dbContext">DbContext that will track changes.</param>
         /// <param name="filter">Expression that filters the entity to remove.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public static void RemoveBy<TEntity>(this DbContext dbContext, Expression<Func<TEntity, bool>> filter) where TEntity : class
         {
             if (filter is null)
@@ -146,7 +152,8 @@ namespace DS.EFCore.Helper
         /// <typeparam name="TEntity">Entity class.</typeparam>
         /// <param name="dbContext">DbContext that will track changes.</param>
         /// <param name="filter">Expression that filters the entity to remove.</param>
-        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns>Task to execute.</returns>
         public static async Task RemoveAsyncBy<TEntity>(this DbContext dbContext, Expression<Func<TEntity, bool>> filter) where TEntity : class
         {
             if (filter is null)
@@ -200,7 +207,7 @@ namespace DS.EFCore.Helper
         /// <typeparam name="TEntity">Entity class.</typeparam>
         /// <param name="dbContext">DbContext that will track changes.</param>
         /// <param name="filter">Expression that filters the entities to remove.</param>
-        /// <returns></returns>
+        /// <returns>Task to execute.</returns>
         public static async Task RemoveAllAsync<TEntity>(this DbContext dbContext, Expression<Func<TEntity, bool>> filter) where TEntity : class
         {
             TEntity[] entities = await dbContext
@@ -211,6 +218,72 @@ namespace DS.EFCore.Helper
 
             if (entities.Any())
                 dbContext.RemoveRange(entities);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Changes the tracking of the entity that matches the given expression setting State = EntityState.Detached.
+        /// </para>
+        /// <para>
+        /// If no entity is found, an exception will be thrown.
+        /// </para>
+        /// </summary>
+        /// <typeparam name="TEntity">Entity class.</typeparam>
+        /// <param name="dbContext">DbContext that will track changes.</param>
+        /// <param name="filter">Expression that filters the entity to remove.</param>
+        /// <param name="entityStateToRemove">State to filter the entity entry.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void DetachUnsavedEntityBy<TEntity>(this DbContext dbContext, Expression<Func<TEntity, bool>> filter, EntityState entityStateToRemove = EntityState.Added) where TEntity : class
+        {
+            if (filter is null)
+                throw new ArgumentNullException(nameof(filter));
+
+            var entriesFromChangeTracker = dbContext
+                .ChangeTracker
+                .Entries<TEntity>()
+                .Where(entry => entry.State == entityStateToRemove)
+                .AsQueryable();
+
+            TEntity entityFromChangeTracker = entriesFromChangeTracker
+                .Select(entry => entry.Entity)
+                .Single(filter);
+
+            EntityEntry entityEntry = entriesFromChangeTracker.Single(entry => entry.Entity == entityFromChangeTracker);
+            entityEntry.State = EntityState.Detached;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Changes the tracking of the entities (multiple) that matches the given expression setting State = EntityState.Detached.
+        /// </para>
+        /// </summary>
+        /// <typeparam name="TEntity">Entity class.</typeparam>
+        /// <param name="dbContext">DbContext that will track changes.</param>
+        /// <param name="filter">Expression that filters the entity to remove.</param>
+        /// <param name="entityStateToRemove">State to filter the entities entries.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns>Task to execute.</returns>
+        public static void DetachUnsavedEntitiesBy<TEntity>(this DbContext dbContext, Expression<Func<TEntity, bool>> filter, EntityState entityStateToRemove = EntityState.Added) where TEntity : class
+        {
+            if (filter is null)
+                throw new ArgumentNullException(nameof(filter));
+
+            var entriesFromChangeTracker = dbContext
+                .ChangeTracker
+                .Entries<TEntity>()
+                .Where(entry => entry.State == entityStateToRemove)
+                .AsQueryable();
+
+            IEnumerable<TEntity> entitiesFromChangeTracker = entriesFromChangeTracker
+                .Select(entry => entry.Entity)
+                .Where(filter)
+                .ToArray();
+
+            foreach (TEntity entityFromChangeTracker in entitiesFromChangeTracker)
+            {
+                EntityEntry entityEntry = entriesFromChangeTracker.Single(entry => entry.Entity == entityFromChangeTracker);
+                entityEntry.State = EntityState.Detached;
+            }
         }
     }
 }
