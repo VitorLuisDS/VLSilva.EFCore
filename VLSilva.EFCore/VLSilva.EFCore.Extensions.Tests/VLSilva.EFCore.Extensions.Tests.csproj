@@ -14,4 +14,8 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VLSilva.EFCore.Extensions\VLSilva.EFCore.Extensions.csproj" />
+  </ItemGroup>
+
 </Project>
