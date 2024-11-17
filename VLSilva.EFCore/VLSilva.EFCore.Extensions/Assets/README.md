@@ -10,7 +10,7 @@ The VLSilva.EFCore projects were created to fasten EFCore implementation since I
 ## VLSilva.EFCore Packages
 | Name |  Version | NuGet |
 | ------- | ----- | ----- |
-| `VLSilva.EFCore.Extensions` | 1.0.0 | [Click here](https://www.nuget.org/packages/VLSilva.EFCore.Extensions) |
+| `VLSilva.EFCore.Extensions` | 1.2.0 | [Click here](https://www.nuget.org/packages/VLSilva.EFCore.Extensions) |
 
 ---
 
@@ -27,8 +27,8 @@ The VLSilva.EFCore projects were created to fasten EFCore implementation since I
 ## Dependencies
 
 ### VLSilva.EFCore.Extensions
-- .NET Standard 2.0 or greater.
-- Microsoft.EntityFrameworkCore 3.1.21 or greater.
+- .NET Standard 2.0 or .NET 6/8/9.
+- Microsoft.EntityFrameworkCore 3.1.*, 7.*, 8.* or 9.*.
 
 ---
  
