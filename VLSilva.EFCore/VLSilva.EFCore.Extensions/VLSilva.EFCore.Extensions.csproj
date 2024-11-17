@@ -6,7 +6,7 @@
     <Description>VLSilva.EFCore.Extensions is a aggregate of useful extensions when working with EFCore.</Description>
     <Copyright>Copyright (c) 2024 Vitor Silva</Copyright>
     <PackageProjectUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</PackageProjectUrl>
-    <PackageIcon>VLSilva.EFCore Icon2.png</PackageIcon>
+    <PackageIcon>VLSilva.EFCore_Icon2.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/VitorLuisDS/VLSilva.EFCore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -32,6 +32,14 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Assets\VLSilva.EFCore_Icon2.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Assets\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
