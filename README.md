@@ -13,7 +13,7 @@ The projects were created to fasten EFCore implementation since I always created
 ## Packages
 | Name |  Version | NuGet |
 | ------- | ----- | ----- |
-| `VLSilva.EFCore.Extensions` | 1.1.0 | [Click here](https://www.nuget.org/packages/VLSilva.EFCore.Extensions) |
+| `VLSilva.EFCore.Extensions` | 1.2.0 | [Click here](https://www.nuget.org/packages/VLSilva.EFCore.Extensions) |
 
 ---
 
