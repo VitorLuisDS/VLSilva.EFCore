@@ -3,10 +3,10 @@
 
 <img src="https://i.imgur.com/plcvDhF.png">
 
-VLSilva.EFCore is a aggregate of projects containing useful resources when working with EFCore.
+VLSilva.EFCore is an aggregate of useful resources when working with EFCore.
 
 ## Why did I create it?
-The projects were created to fasten EFCore implementation since I always created the same resources in every project I worked in.
+The projects were created to speed up EFCore implementation, as I always created the same resources in every project I worked on.
 
 ---
 
@@ -48,7 +48,7 @@ The projects were created to fasten EFCore implementation since I always created
 ## Contribute
 Do you know some functionality you think VLSilva.EF Core should have? Your suggestions are very welcome!
 
-Feel free to fork and experiment new solutions to your own projects as well.
+Feel free to fork and experiment new solutions to your projects as well.
 
 ---
 
